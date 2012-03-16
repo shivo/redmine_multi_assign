@@ -1,0 +1,4 @@
+# English strings go here for Rails i18n
+en:
+  multi_assign:
+    label_assign_subprojects: "Assign also subprojects"

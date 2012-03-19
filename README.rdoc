@@ -5,7 +5,7 @@ all its subprojects to user at once
 
 ==Usage
 
-The plugin currently provides two additions to the Users admin page:
+The plugin currently provides two additions to the Administration -> Users -> user edit page -> Projects tab:
 
 1. By checking the checkbox 'Assign also subprojects' you can assign all subprojects of selected project to user.
 2. By clicking on the button 'Unassign all projects' you can unassign/delete all assigned projects from user.

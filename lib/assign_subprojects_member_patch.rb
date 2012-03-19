@@ -2,8 +2,6 @@
 # and open the template in the editor.
 
 module AssignSubprojectsMemberPatch
-  require_dependency 'member'
-
   def self.included(base) # :nodoc:
 #    base.send(:include, InstanceMethods)
 #

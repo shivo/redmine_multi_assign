@@ -12,9 +12,16 @@ end
 # Patches to the Redmine core.
 require 'dispatcher'
 require 'assign_subprojects_member_patch'
+require 'unassign_subprojects_users_controller_patch'
 
-Dispatcher.to_prepare do
+Dispatcher.to_prepare :redmine_multi_assign do
+  require_dependency 'member'
   unless Member.included_modules.include? AssignSubprojectsMemberPatch
     Member.send(:include, AssignSubprojectsMemberPatch)
+  end
+
+  require_dependency 'users_controller'
+  unless UsersController.included_modules.include? UnassignSubprojectsUsersControllerPatch
+    UsersController.send(:include, UnassignSubprojectsUsersControllerPatch)
   end
 end

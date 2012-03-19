@@ -60,4 +60,9 @@
 <% end %>
 </fieldset>
 <% end %>
+  <p>
+  <% remote_form_for(:membership, :url => { :action => 'unassign_subprojects', :id => @user }) do %>
+    <p><%= submit_tag 'unassign_all' %></p>
+  <% end %>
+  </p>
 </div>

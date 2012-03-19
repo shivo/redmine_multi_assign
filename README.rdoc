@@ -1,10 +1,26 @@
-= redmine_multi_assign
+=redmine_multi_assign
+
 Plugin for Redmine that allows to assign project and
 all its subprojects to user at once
 
-== Warning
-<b>This is currently ALPHA code!</b>
+==Usage
 
-== Note
+The plugin currently provides two additions to the Users admin page:
+
+1. By checking the checkbox 'Assign also subprojects' you can assign all subprojects of selected project to user.
+2. By clicking on the button 'Unassign all projects' you can unassign/delete all assigned projects from user.
+
+==Warning
+
+This is currently alpha code in very early stage of development.
+
+==Note
+
 Tested only with redmine 1.3.0
 
+==Licensing
+
+This plugin is open-source and licensed under the "GNU General Public License v2" (GPL, http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+). See the included <tt>GPL.txt</tt> and <tt>LICENSE.txt</tt> files for details.
+
+(C)2012, Juraj Sujan aka shivo

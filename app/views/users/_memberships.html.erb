@@ -51,7 +51,7 @@
 <fieldset><legend><%=l(:label_project_new)%></legend>
 <% remote_form_for(:membership, :url => { :action => 'edit_membership', :id => @user }) do %>
 <%= select_tag 'membership[project_id]', options_for_membership_project_select(@user, projects) %>
-<p><%= l(:label_assign_subprojects, :scope => 'multi_assign') %> <%= check_box_tag 'membership[assign_subprojects]' %></p>
+<p><%= l(:label_assign_subprojects, :scope => 'redmine_multi_assign') %> <%= check_box_tag 'membership[assign_subprojects]' %></p>
 <p><%= l(:label_role_plural) %>:
 <% roles.each do |role| %>
   <label><%= check_box_tag 'membership[role_ids][]', role.id %> <%=h role %></label>
@@ -61,8 +61,8 @@
 </fieldset>
 <% end %>
   <p>
-  <% remote_form_for(:membership, :url => { :action => 'unassign_subprojects', :id => @user }) do %>
-    <p><%= submit_tag 'unassign_all' %></p>
+  <% remote_form_for(:membership, :url => { :action => 'unassign_projects', :id => @user }) do %>
+    <p><%= submit_tag l('button_unassign_all_projects', :scope => 'redmine_multi_assign') %></p>
   <% end %>
   </p>
 </div>

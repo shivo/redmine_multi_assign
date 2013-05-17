@@ -2,9 +2,9 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_multi_assign do
   name 'Redmine Multi Assign plugin'
-  author 'Juraj Šujan, AXON PRO s.r.o.'
+  author 'Juraj Sujan aka shivo, AXON PRO s.r.o.'
   description 'Plugin that allows to add and edit multiple project to user assignments (memberships) at once'
-  version '0.0.2'
+  version '0.1.0'
   url 'https://github.com/axonpro/redmine_multi_assign'
   author_url 'https://github.com/axonpro'
 end

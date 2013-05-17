@@ -1,6 +1,5 @@
 # English strings go here for Rails i18n
 en:
   redmine_multi_assign:
-    label_assign_subprojects: "Assign also subprojects"
-    button_unassign_all_projects: "Unassign all projects"
-    label_memberships_advanced: 'Projects advanced'
+    label_edit_action_delete: 'Delete'
+    label_edit_action_edit_roles: 'Edit roles'

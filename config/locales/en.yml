@@ -3,3 +3,4 @@ en:
   redmine_multi_assign:
     label_assign_subprojects: "Assign also subprojects"
     button_unassign_all_projects: "Unassign all projects"
+    label_memberships_advanced: 'Projects advanced'

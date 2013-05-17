@@ -1,0 +1,5 @@
+
+sk:
+  redmine_multi_assign:
+    label_edit_action_delete: 'Zmazať'
+    label_edit_action_edit_roles: 'Zmeniť roly'

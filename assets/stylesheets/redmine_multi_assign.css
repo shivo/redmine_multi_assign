@@ -1,0 +1,7 @@
+#rma_projects_list {
+    height: 30em;
+    overflow: scroll;
+    border: 1px solid #eee;
+    white-space: nowrap;
+    padding: .5em;
+}

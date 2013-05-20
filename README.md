@@ -38,7 +38,7 @@ And that's all.
 
 ## Warning
 
-This plugin was tested in production environment, but this does not mean its bug free. Use with care!
+This plugin was tested in production environment, but this does not mean it is bug free. Use with care!
 
 ## Note
 

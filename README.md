@@ -1,17 +1,17 @@
-=redmine_multi_assign
+# redmine multi assign
 
 Plugin for Redmine that allows to assign multiple projects and
 subprojects to user at once.
 
-==Installation
+## Installation
 
 Just go to vendor/plugins directory and clone this project from github:
 
-git clone https://github.com/shivo/redmine_multi_assign.git
+    git clone https://github.com/shivo/redmine_multi_assign.git
 
 Then restart redmine server.
 
-==Usage
+## Usage
 
 Go to the Administration -> Users -> edit desired user -> Projects tab.
 
@@ -36,18 +36,18 @@ Finally, hit the 'Submit' button.
 
 And that's all.
 
-==Warning
+## Warning
 
 This plugin was tested in production environment, but this does not mean its bug free. Use with care!
 
-==Note
+## Note
 
 Tested only with redmine 1.3.x
 
-==Licensing
+## Licensing
 
 This plugin is open-source and licensed under the "GNU General Public License v2" (GPL, http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-). See the included <tt>GPL.txt</tt> and <tt>LICENSE.txt</tt> files for details.
+). See the included GPL.txt and LICENSE.txt files for details.
 
 (C)2012 Juraj Sujan aka shivo for AXON PRO s.r.o.
 

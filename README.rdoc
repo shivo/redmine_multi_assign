@@ -5,9 +5,11 @@ subprojects to user at once.
 
 ==Installation
 
-Just go to vendor/plugins directory and clone this projects from github:
+Just go to vendor/plugins directory and clone this project from github:
 
 git clone https://github.com/shivo/redmine_multi_assign.git
+
+Then restart redmine server.
 
 ==Usage
 
@@ -36,8 +38,7 @@ And that's all.
 
 ==Warning
 
-This plugin was tested for quite a long time in production environment in our company.
-But this does not mean its bug free. Use with care!
+This plugin was tested in production environment, but this does not mean its bug free. Use with care!
 
 ==Note
 

@@ -10,10 +10,9 @@ Redmine::Plugin.register :redmine_multi_assign do
 end
 
 # Patches to the Redmine core.
-require 'dispatcher'
 require 'users_controller_patch'
 
-Dispatcher.to_prepare :redmine_multi_assign do
+Rails.configuration.to_prepare do
   require_dependency 'users_controller'
   unless UsersController.included_modules.include? RedmineMultiAssign::Patches::UsersControllerPatch
     UsersController.send(:include, RedmineMultiAssign::Patches::UsersControllerPatch)

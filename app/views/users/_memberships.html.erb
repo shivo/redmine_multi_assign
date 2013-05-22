@@ -7,12 +7,12 @@
 <% projects = Project.active.find(:all, :order => 'lft') %>
 <div class="splitcontentleft">
 <% if @user.memberships.any? %>
-  <% remote_form_for(@user, :url => { :action => 'rma_edit_memberships', :id => @user }) do |user_form| %>
+    <%= form_for(:membership, :remote => true, :url => rma_edit_memberships_path(@user)) do %>
   <p id="rma_edit_buttons">
-    <%= radio_button_tag :rma_edit_action, :delete %> <%= l(:label_edit_action_delete, :scope => :redmine_multi_assign) %>
-    <%= radio_button_tag :rma_edit_action, :edit_roles %> <%= l(:label_edit_action_edit_roles, :scope => :redmine_multi_assign) %>
+    <%= radio_button_tag :rma_edit_action, :delete, true %> <%= l(:label_edit_action_delete, :scope => :redmine_multi_assign) %>
+    <%= radio_button_tag :rma_edit_action, :edit_roles, false %> <%= l(:label_edit_action_edit_roles, :scope => :redmine_multi_assign) %>
   </p>
-  <p id="rma_edit_roles_form">
+  <p id="rma_edit_roles_form" style="display: none">
     <% roles.each do |role| %>
       <label><%= check_box_tag 'membership[role_ids][]', role.id %> <%=h role %></label>
     <% end %>
@@ -49,7 +49,7 @@
   </tbody>
 </table>
 
-  <%= user_form.submit l(:button_submit) %>
+  <%= submit_tag l(:button_submit) %>
   <%  end %>
 <% else %>
 <p class="nodata"><%= l(:label_no_data) %></p>
@@ -58,21 +58,23 @@
 
 <div class="splitcontentright">
 <% if projects.any? %>
-  <h4><%=l(:label_project_new)%></h4>
-    <% remote_form_for(:membership, :url => { :action => 'rma_add_memberships', :id => @user }) do %>
-      <%= check_all_links("rma_projects_list") %>
-      <div id="rma_projects_list">
-        <% project_tree(projects) do |project, level| %>
-          <div><%= (level > 0 ? ('&nbsp;' * 2 * level + '&#187; ') : '') %><%= check_box_tag 'memberships[project_ids][]', project.id, false, :disabled => (@user.projects.include?(project)) %> <%=h project %></div>
+    <fieldset>
+        <legend><%=l(:label_project_new)%></legend>
+        <%= form_for(:membership, :remote => true, :url => rma_add_memberships_path(@user)) do %>
+            <%= check_all_links("rma_projects_list") %>
+            <div id="rma_projects_list">
+                <% project_tree(projects) do |project, level| %>
+                    <div><%= (level > 0 ? ('&nbsp;' * 2 * level + '&#187; ').html_safe : '') %><%= check_box_tag 'memberships[project_ids][]', project.id, false, :disabled => (@user.projects.include?(project)) %> <%=h project %></div>
+                <% end %>
+            </div>
+            <p><%= l(:label_role_plural) %>:
+                <% roles.each do |role| %>
+                    <div><%= check_box_tag 'membership[role_ids][]', role.id %> <%=h role %></div>
+                <% end %>
+            </p>
+            <p><%= submit_tag l(:button_add) %></p>
         <% end %>
-      </div>
-      <p><%= l(:label_role_plural) %>:
-        <% roles.each do |role| %>
-          <div><%= check_box_tag 'membership[role_ids][]', role.id %> <%=h role %></div>
-        <% end %>
-      </p>
-      <p><%= submit_tag l(:button_add) %></p>
-    <% end %>
+    </fieldset>
 <% end %>
 </div>
 

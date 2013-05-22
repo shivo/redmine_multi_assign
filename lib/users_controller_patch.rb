@@ -11,69 +11,53 @@ module RedmineMultiAssign
 
       module InstanceMethods
         def rma_add_memberships
-          respond_to do |format|
-            success = true
+          @success = true
+          if params[:memberships]
             params[:memberships][:project_ids] ||= []
             params[:memberships][:project_ids].each do |project_id|
               params[:membership][:project_id] = project_id
               @membership = Member.edit_membership(params[:membership_id], params[:membership], @user)
-              @membership.save
-              unless @membership.valid?
-                rma_error(format, @membership.errors)
-                success = false
+              unless @membership.save
+                #rma_error(format, @membership.errors)
+                @errors = @membership.errors
+                @success = false
               end
             end
-            if success
-              rma_success(format)
-            end
+          else
+            @errors = "no membership selected"
+            @success = false
+          end
+          respond_to do |format|
+            format.html { redirect_to edit_user_path(@user, :tab => 'memberships') }
+            format.js
           end
         end
 
         def rma_edit_memberships
-          respond_to do |format|
-            params[:memberships] ||= []
-            params[:memberships].values.each do |membership_params|
-              if membership_params[:checked]
-                membership = Member.find(membership_params[:id])
-                if membership
-                  if params[:rma_edit_action] == 'delete'
-                    membership.delete
-                  elsif params[:rma_edit_action] == 'edit_roles'
-                    membership.attributes = params[:membership]
-                    membership.save
+          @success = true
+          params[:memberships] ||= []
+          params[:memberships].values.each do |membership_params|
+            if membership_params[:checked]
+              membership = Member.find(membership_params[:id])
+              if membership
+                if params[:rma_edit_action] == 'delete'
+                  unless membership.delete
+                    @success = false
+                    @errors = "Cannot delete membership"
+                  end
+                elsif params[:rma_edit_action] == 'edit_roles'
+                  unless membership.update_attributes(params[:membership])
+                    @success = false
+                    @errors = "Cannot update membership"
                   end
                 end
               end
             end
-            rma_success(format)
-#            else
-#              format.js {
-#                  render(:update) {|page|
-#                    page.alert(l(:notice_failed_to_save_members, :errors => @user.errors.full_messages.join(', ')))
-#                  }
-#                }
-#            end
           end
-        end
-
-        private
-
-        def rma_success(format)
-            format.html { redirect_to :controller => 'users', :action => 'edit', :id => @user, :tab => 'memberships' }
-            format.js {
-                render(:update) {|page|
-                  page.replace_html "tab-content-memberships", :partial => 'users/memberships'
-                  page << "rma_observe_edit_buttons();"
-                }
-              }
-        end
-
-        def rma_error(format, errors)
-          format.js {
-            render(:update) {|page|
-              page.alert(l(:notice_failed_to_save_members, :errors => errors.full_messages.join(', ')))
-            }
-          }
+          respond_to do |format|
+            format.html { redirect_to edit_user_path(@user, :tab => 'memberships') }
+            format.js
+          end
         end
       end
     end

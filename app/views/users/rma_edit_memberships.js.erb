@@ -1,0 +1,5 @@
+<% if @success %>
+  $('#tab-content-memberships').html('<%= escape_javascript(render :partial => 'users/memberships') %>');
+<% else %>
+        alert('<%= raw(escape_javascript(l(:notice_failed_to_save_members, :errors => @errors))) %>');
+<% end %>
